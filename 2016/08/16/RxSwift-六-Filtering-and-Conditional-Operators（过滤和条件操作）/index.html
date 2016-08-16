@@ -88,23 +88,20 @@
 
 <meta name="description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
 
-filter按照指定条件过滤出符合条件的结果
-1234567891011let disposeBag = DisposeBag()      Observable.of(    &quot;🐱&quot;, &quot;🐰&quot;, &quot;🐶&quot;,    &quot;🐸&quot;, &quot;🐱&quot;, &quot;🐰&quot;,    &quot;🐹&quot;">
+filter按照指定条件过滤出符合条件的结果">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift(六) Filtering and Conditional Operators（过滤和条件操作）">
 <meta property="og:url" content="http://yoursite.com/2016/08/16/RxSwift-六-Filtering-and-Conditional-Operators（过滤和条件操作）/index.html">
 <meta property="og:site_name" content="大石头布 的技术blog">
 <meta property="og:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
 
-filter按照指定条件过滤出符合条件的结果
-1234567891011let disposeBag = DisposeBag()      Observable.of(    &quot;🐱&quot;, &quot;🐰&quot;, &quot;🐶&quot;,    &quot;🐸&quot;, &quot;🐱&quot;, &quot;🐰&quot;,    &quot;🐹&quot;">
-<meta property="og:updated_time" content="2016-08-16T14:20:33.490Z">
+filter按照指定条件过滤出符合条件的结果">
+<meta property="og:updated_time" content="2016-08-16T14:23:36.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift(六) Filtering and Conditional Operators（过滤和条件操作）">
 <meta name="twitter:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
 
-filter按照指定条件过滤出符合条件的结果
-1234567891011let disposeBag = DisposeBag()      Observable.of(    &quot;🐱&quot;, &quot;🐰&quot;, &quot;🐶&quot;,    &quot;🐸&quot;, &quot;🐱&quot;, &quot;🐰&quot;,    &quot;🐹&quot;">
+filter按照指定条件过滤出符合条件的结果">
 
 
 
@@ -369,8 +366,7 @@ filter按照指定条件过滤出符合条件的结果
 <blockquote>
 <p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
 </blockquote>
-<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>按照指定条件过滤出符合条件的结果</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">      </div><div class="line"><span class="type">Observable</span>.of(</div><div class="line">    <span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>,</div><div class="line">    <span class="string">"🐸"</span>, <span class="string">"🐱"</span>, <span class="string">"🐰"</span>,</div><div class="line">    <span class="string">"🐹"</span>, <span class="string">"🐸"</span>, <span class="string">"🐱"</span>)</div><div class="line">    .<span class="built_in">filter</span> &#123;</div><div class="line">        $<span class="number">0</span> == <span class="string">"🐱"</span></div><div class="line">    &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>按照指定条件过滤出符合条件的结果<br><a id="more"></a><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">      </div><div class="line"><span class="type">Observable</span>.of(</div><div class="line">    <span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>,</div><div class="line">    <span class="string">"🐸"</span>, <span class="string">"🐱"</span>, <span class="string">"🐰"</span>,</div><div class="line">    <span class="string">"🐹"</span>, <span class="string">"🐸"</span>, <span class="string">"🐱"</span>)</div><div class="line">    .<span class="built_in">filter</span> &#123;</div><div class="line">        $<span class="number">0</span> == <span class="string">"🐱"</span></div><div class="line">    &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure></p>
 <p>结果 ：<code>🐱 🐱 🐱</code>  </p>
 <h4 id="distinctUntilChanged"><a href="#distinctUntilChanged" class="headerlink" title="distinctUntilChanged"></a>distinctUntilChanged</h4><p>遇到连续重复的 只取一个 直到有不一样的</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐷"</span>, <span class="string">"🐱"</span>, <span class="string">"🐱"</span>, <span class="string">"🐱"</span>, <span class="string">"🐵"</span>, <span class="string">"🐱"</span>)</div><div class="line">    .distinctUntilChanged()</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
