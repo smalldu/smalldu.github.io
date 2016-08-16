@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT , iOS" />
+  <meta name="keywords" content="iOS,RxSwift,Swift," />
 
 
 
@@ -86,15 +86,25 @@
 
 
 
-<meta name="description" content="iOS 技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="大石头布 的技术blog">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+<meta name="description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
+
+map通过一个闭包改变Observable 序列元素，返回一个新的Observable
+12345let disposeBag = DisposeBag()Observable.of(1, 2, 3)    .map &amp;#123; $0 * $0 &amp;#125;    .">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift(五) Transforming Operators（转换操作）">
+<meta property="og:url" content="http://yoursite.com/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/index.html">
 <meta property="og:site_name" content="大石头布 的技术blog">
-<meta property="og:description" content="iOS 技术博客">
+<meta property="og:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
+
+map通过一个闭包改变Observable 序列元素，返回一个新的Observable
+12345let disposeBag = DisposeBag()Observable.of(1, 2, 3)    .map &amp;#123; $0 * $0 &amp;#125;    .">
+<meta property="og:updated_time" content="2016-08-16T14:19:44.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大石头布 的技术blog">
-<meta name="twitter:description" content="iOS 技术博客">
+<meta name="twitter:title" content="RxSwift(五) Transforming Operators（转换操作）">
+<meta name="twitter:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
+
+map通过一个闭包改变Observable 序列元素，返回一个新的Observable
+12345let disposeBag = DisposeBag()Observable.of(1, 2, 3)    .map &amp;#123; $0 * $0 &amp;#125;    .">
 
 
 
@@ -115,9 +125,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2016/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/"/>
 
-  <title> 归档 | 大石头布 的技术blog </title>
+  <title> RxSwift(五) Transforming Operators（转换操作） | 大石头布 的技术blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -148,7 +158,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -259,288 +269,224 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 7 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                RxSwift(五) Transforming Operators（转换操作）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T22:14:42+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/" class="leancloud_visitors" data-flag-title="RxSwift(五) Transforming Operators（转换操作）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <hr>
+<blockquote>
+<p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
+</blockquote>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>通过一个闭包改变<code>Observable</code> 序列元素，返回一个新的<code>Observable</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div><div class="line">    .<span class="built_in">map</span> &#123; $<span class="number">0</span> * $<span class="number">0</span> &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">4</div><div class="line">9</div></pre></td></tr></table></figure></p>
+<h4 id="flatMap-和-flatMapLatest"><a href="#flatMap-和-flatMapLatest" class="headerlink" title="flatMap 和 flatMapLatest"></a>flatMap 和 flatMapLatest</h4><p><code>flatMap</code> 可以把一个序列转换成一组序列，然后再把这一组序列『拍扁』成一个序列 。<br><code>flatMapLatest</code> 只保留最新的序列</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Player</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> score: <span class="type">Variable</span>&lt;<span class="type">Int</span>&gt;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> 👦 = <span class="type">Player</span>(score: <span class="type">Variable</span>(<span class="number">80</span>))</div><div class="line"><span class="keyword">let</span> 👧 = <span class="type">Player</span>(score: <span class="type">Variable</span>(<span class="number">90</span>))</div><div class="line"></div><div class="line"><span class="keyword">let</span> player = <span class="type">Variable</span>(👦)</div><div class="line"></div><div class="line">player.asObservable()</div><div class="line">    .flatMap &#123; $<span class="number">0</span>.score.asObservable() &#125; <span class="comment">// 可以换成flatMapLatest试试</span></div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">👦.score.value = <span class="number">85</span></div><div class="line"></div><div class="line">player.value = 👧</div><div class="line"></div><div class="line">👦.score.value = <span class="number">95</span> <span class="comment">// flatMap 会打印 flatMapLatest不会</span></div><div class="line">👧.score.value = <span class="number">100</span></div></pre></td></tr></table></figure>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">80</div><div class="line">85</div><div class="line">90</div><div class="line">95</div><div class="line">100</div></pre></td></tr></table></figure></p>
+<p><code>flatMapLatest</code> 相当于是 <code>map</code> 和 <code>switchLatest</code> 操作的结合 </p>
+<h4 id="scan"><a href="#scan" class="headerlink" title="scan"></a>scan</h4><p>把每次的运算结果累积起来，作为下一次运算的输入值。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">   </div><div class="line"><span class="type">Observable</span>.of(<span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>)</div><div class="line">    .scan(<span class="number">1</span>) &#123; aggregateValue, newValue <span class="keyword">in</span></div><div class="line">        aggregateValue + newValue</div><div class="line">    &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>)</div><div class="line">    .scan(<span class="number">1</span>) &#123; aggregateValue, newValue <span class="keyword">in</span></div><div class="line">        aggregateValue + newValue</div><div class="line">    &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure></p>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">11</div><div class="line">111</div><div class="line">1111</div></pre></td></tr></table></figure></p>
+<p> <code>scan</code> 可以付一个初始值</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat.jpg" alt="大石头布 WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="大石头布 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/RxSwift/" rel="tag">#RxSwift</a>
+          
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
+          
+        </div>
+      
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/16/RxSwift-七-Mathematical-and-Aggregate-Operators（数学和聚集操作）/" itemprop="url">
-              
-                <span itemprop="name">RxSwift(七) Mathematical and Aggregate Operators（数学和聚集操作）</span>
-              
-            </a>
-        
-      </h1>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/RxSwift-四-Combination-Operators/" rel="next" title="RxSwift(四) Combination Operators">
+                <i class="fa fa-chevron-left"></i> RxSwift(四) Combination Operators
+              </a>
+            
+          </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-16T22:15:40+08:00"
-              content="2016-08-16" >
-          08-16
-        </time>
-      </div>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/16/RxSwift-六-Filtering-and-Conditional-Operators（过滤和条件操作）/" rel="prev" title="RxSwift(六) Filtering and Conditional Operators（过滤和条件操作）">
+                RxSwift(六) Filtering and Conditional Operators（过滤和条件操作） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/16/RxSwift-六-Filtering-and-Conditional-Operators（过滤和条件操作）/" itemprop="url">
-              
-                <span itemprop="name">RxSwift(六) Filtering and Conditional Operators（过滤和条件操作）</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-16T22:15:14+08:00"
-              content="2016-08-16" >
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/" itemprop="url">
-              
-                <span itemprop="name">RxSwift(五) Transforming Operators（转换操作）</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-16T22:14:42+08:00"
-              content="2016-08-16" >
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/16/RxSwift-四-Combination-Operators/" itemprop="url">
-              
-                <span itemprop="name">RxSwift(四) Combination Operators</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-16T22:14:08+08:00"
-              content="2016-08-16" >
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/16/RxSwift-三-Subjects/" itemprop="url">
-              
-                <span itemprop="name">RxSwift(三) Subjects</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-16T22:13:19+08:00"
-              content="2016-08-16" >
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/16/RxSwift-二-创建并订阅Observables/" itemprop="url">
-              
-                <span itemprop="name">RxSwift(二) 创建并订阅Observables</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-16T16:56:48+08:00"
-              content="2016-08-16" >
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/16/RxSwift(一)-简介/" itemprop="url">
-              
-                <span itemprop="name">RxSwift 简介</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-16T16:42:31+08:00"
-              content="2016-08-16" >
-          08-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-
+    </div>
+  </div>
 
 
           </div>
@@ -548,6 +494,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/"
+           data-title="RxSwift(五) Transforming Operators（转换操作）" data-url="http://yoursite.com/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -567,8 +521,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -645,6 +608,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#map"><span class="nav-number">1.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#flatMap-和-flatMapLatest"><span class="nav-number">2.</span> <span class="nav-text">flatMap 和 flatMapLatest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scan"><span class="nav-number">3.</span> <span class="nav-text">scan</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -741,11 +715,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   

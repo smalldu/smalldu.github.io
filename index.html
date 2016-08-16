@@ -283,6 +283,738 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/16/RxSwift-七-Mathematical-and-Aggregate-Operators（数学和聚集操作）/" itemprop="url">
+                  RxSwift(七) Mathematical and Aggregate Operators（数学和聚集操作）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T22:15:40+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/RxSwift-七-Mathematical-and-Aggregate-Operators（数学和聚集操作）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/RxSwift-七-Mathematical-and-Aggregate-Operators（数学和聚集操作）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/16/RxSwift-七-Mathematical-and-Aggregate-Operators（数学和聚集操作）/" class="leancloud_visitors" data-flag-title="RxSwift(七) Mathematical and Aggregate Operators（数学和聚集操作）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<blockquote>
+<p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
+</blockquote>
+<h4 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h4><p>将一个<code>Observable</code> sequence 转成一个 <code>Array</code> , 只有一个数组元素的<code>Observable</code> 序列</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">5</span>)</div><div class="line">    .toArray()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果 ： <code>Next([1, 2, 3, 4, 5]) Completed</code> </p>
+<h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h4><p>从一个初始值 挨个执行运算 得到最后结果 返回一个单个结果的 <code>Observable</code> 序列</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="type">Observable</span>.of(<span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>)</div><div class="line">    .<span class="built_in">reduce</span>(<span class="number">1</span>, accumulator: +)</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果 : <code>1111</code></p>
+<h4 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h4><p>将多个 <code>Observable</code> 连接起来 只有当前一个执行结束了 才开始第二个 </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="keyword">let</span> subject1 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🍎"</span>)</div><div class="line"><span class="keyword">let</span> subject2 = <span class="type">BehaviorSubject</span>(value: <span class="string">"🐶"</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(subject1)</div><div class="line"></div><div class="line">variable.asObservable()</div><div class="line">    .concat()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">subject1.onNext(<span class="string">"🍐"</span>)</div><div class="line">subject1.onNext(<span class="string">"🍊"</span>)</div><div class="line"></div><div class="line">variable.value = subject2</div><div class="line"></div><div class="line">subject2.onNext(<span class="string">"I would be ignored"</span>)</div><div class="line">subject2.onNext(<span class="string">"I would be ignored"</span>)</div><div class="line">subject2.onNext(<span class="string">"I would be ignored"</span>)</div><div class="line">subject2.onNext(<span class="string">"🐱"</span>)</div><div class="line"></div><div class="line">subject1.onNext(<span class="string">"🍊"</span>)</div><div class="line">subject1.onCompleted()</div><div class="line"></div><div class="line">subject2.onNext(<span class="string">"🐭"</span>)</div></pre></td></tr></table></figure>
+<p>结果 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Next(🍎)</div><div class="line">Next(🍐)</div><div class="line">Next(🍊)</div><div class="line">Next(🍊)</div><div class="line">Next(🐱)</div><div class="line">Next(🐭)</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/16/RxSwift-六-Filtering-and-Conditional-Operators（过滤和条件操作）/" itemprop="url">
+                  RxSwift(六) Filtering and Conditional Operators（过滤和条件操作）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T22:15:14+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/RxSwift-六-Filtering-and-Conditional-Operators（过滤和条件操作）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/RxSwift-六-Filtering-and-Conditional-Operators（过滤和条件操作）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/16/RxSwift-六-Filtering-and-Conditional-Operators（过滤和条件操作）/" class="leancloud_visitors" data-flag-title="RxSwift(六) Filtering and Conditional Operators（过滤和条件操作）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<blockquote>
+<p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
+</blockquote>
+<h4 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h4><p>按照指定条件过滤出符合条件的结果</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">      </div><div class="line"><span class="type">Observable</span>.of(</div><div class="line">    <span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>,</div><div class="line">    <span class="string">"🐸"</span>, <span class="string">"🐱"</span>, <span class="string">"🐰"</span>,</div><div class="line">    <span class="string">"🐹"</span>, <span class="string">"🐸"</span>, <span class="string">"🐱"</span>)</div><div class="line">    .<span class="built_in">filter</span> &#123;</div><div class="line">        $<span class="number">0</span> == <span class="string">"🐱"</span></div><div class="line">    &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果 ：<code>🐱 🐱 🐱</code>  </p>
+<h4 id="distinctUntilChanged"><a href="#distinctUntilChanged" class="headerlink" title="distinctUntilChanged"></a>distinctUntilChanged</h4><p>遇到连续重复的 只取一个 直到有不一样的</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐷"</span>, <span class="string">"🐱"</span>, <span class="string">"🐱"</span>, <span class="string">"🐱"</span>, <span class="string">"🐵"</span>, <span class="string">"🐱"</span>)</div><div class="line">    .distinctUntilChanged()</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">🐱</div><div class="line">🐷</div><div class="line">🐱</div><div class="line">🐵</div><div class="line">🐱</div></pre></td></tr></table></figure></p>
+<h4 id="elementAt"><a href="#elementAt" class="headerlink" title="elementAt"></a>elementAt</h4><p>取出对应下标的元素</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>, <span class="string">"🐸"</span>, <span class="string">"🐷"</span>, <span class="string">"🐵"</span>)</div><div class="line">    .elementAt(<span class="number">3</span>)</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果: <code>🐸</code>     从 0 开始</p>
+<h4 id="single"><a href="#single" class="headerlink" title="single"></a>single</h4><p>调用第一个元素（或者符合条件的第一个） ， 如果没有满足的元素将会抛出异常 。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>, <span class="string">"🐸"</span>, <span class="string">"🐷"</span>, <span class="string">"🐵"</span>)</div><div class="line">    .single()</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>result: <code>🐱</code> </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>, <span class="string">"🐸"</span>, <span class="string">"🐷"</span>, <span class="string">"🐵"</span>)</div><div class="line">    .single &#123; $<span class="number">0</span> == <span class="string">"🐸"</span> &#125;</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>, <span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>)</div><div class="line">    .single &#123; $<span class="number">0</span> == <span class="string">"🐰"</span> &#125;</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>, <span class="string">"🐸"</span>, <span class="string">"🐷"</span>, <span class="string">"🐵"</span>)</div><div class="line">    .single &#123; $<span class="number">0</span> == <span class="string">"🔵"</span> &#125;</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Next(🐸)</div><div class="line">Completed</div><div class="line">Next(🐰)</div><div class="line">Error(Sequence contains more than one element.)</div><div class="line">Error(Sequence doesn&apos;t contain any elements.)</div></pre></td></tr></table></figure>
+<h4 id="take"><a href="#take" class="headerlink" title="take"></a>take</h4><p>从头开始调用指定数量的元素<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>, <span class="string">"🐸"</span>, <span class="string">"🐷"</span>, <span class="string">"🐵"</span>)</div><div class="line">    .take(<span class="number">3</span>)</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure></p>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">🐱</div><div class="line">🐰</div><div class="line">🐶</div></pre></td></tr></table></figure>
+<h4 id="takeLast"><a href="#takeLast" class="headerlink" title="takeLast"></a>takeLast</h4><p>从结尾开始 </p>
+<h4 id="takeWhile"><a href="#takeWhile" class="headerlink" title="takeWhile"></a>takeWhile</h4><p>从头开始调直到不满足条件<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)</div><div class="line">    .takeWhile &#123; $<span class="number">0</span> &lt; <span class="number">4</span> &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure></p>
+<p>结果 ：<code>1 2 3</code></p>
+<h4 id="takeUntil"><a href="#takeUntil" class="headerlink" title="takeUntil"></a>takeUntil</h4><p><code>Observable</code> 按顺序调用 直到关联的 <code>Observable</code> 调用了后 他自己的就不调用了 </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="keyword">let</span> sourceSequence = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> referenceSequence = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"></div><div class="line">sourceSequence</div><div class="line">    .takeUntil(referenceSequence)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">sourceSequence.onNext(<span class="string">"🐱"</span>)</div><div class="line">sourceSequence.onNext(<span class="string">"🐰"</span>)</div><div class="line">sourceSequence.onNext(<span class="string">"🐶"</span>)</div><div class="line"></div><div class="line">referenceSequence.onNext(<span class="string">"🔴"</span>)</div><div class="line"></div><div class="line">sourceSequence.onNext(<span class="string">"🐸"</span>)</div><div class="line">sourceSequence.onNext(<span class="string">"🐷"</span>)</div><div class="line">sourceSequence.onNext(<span class="string">"🐵"</span>)</div></pre></td></tr></table></figure>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Next(🐱)</div><div class="line">Next(🐰)</div><div class="line">Next(🐶)</div><div class="line">Completed</div></pre></td></tr></table></figure></p>
+<h4 id="skip"><a href="#skip" class="headerlink" title="skip"></a>skip</h4><p>从头开始 跳过 几个 跟take相反</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>, <span class="string">"🐸"</span>, <span class="string">"🐷"</span>, <span class="string">"🐵"</span>)</div><div class="line">    .skip(<span class="number">2</span>)</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果 ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">🐶</div><div class="line">🐸</div><div class="line">🐷</div><div class="line">🐵</div></pre></td></tr></table></figure></p>
+<h4 id="skipWhile"><a href="#skipWhile" class="headerlink" title="skipWhile"></a>skipWhile</h4><p>从头开始直到条件为false </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">3</span>)</div><div class="line">    .skipWhile &#123; $<span class="number">0</span> &lt; <span class="number">4</span> &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果 ： <code>4 5 6 3</code></p>
+<h4 id="skipWhileWithIndex"><a href="#skipWhileWithIndex" class="headerlink" title="skipWhileWithIndex"></a>skipWhileWithIndex</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🐱"</span>, <span class="string">"🐰"</span>, <span class="string">"🐶"</span>, <span class="string">"🐸"</span>, <span class="string">"🐷"</span>, <span class="string">"🐵"</span>)</div><div class="line">    .skipWhileWithIndex &#123; element, index <span class="keyword">in</span></div><div class="line">        index &lt; <span class="number">3</span></div><div class="line">    &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p>结果 :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">🐸</div><div class="line">🐷</div><div class="line">🐵</div></pre></td></tr></table></figure></p>
+<h4 id="skipUntil"><a href="#skipUntil" class="headerlink" title="skipUntil"></a>skipUntil</h4><p>跟take相反  直到关联的序列开始执行 它才开始<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">    </div><div class="line"><span class="keyword">let</span> sourceSequence = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"><span class="keyword">let</span> referenceSequence = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line"></div><div class="line">sourceSequence</div><div class="line">    .skipUntil(referenceSequence)</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">sourceSequence.onNext(<span class="string">"🐱"</span>)</div><div class="line">sourceSequence.onNext(<span class="string">"🐰"</span>)</div><div class="line">sourceSequence.onNext(<span class="string">"🐶"</span>)</div><div class="line"></div><div class="line">referenceSequence.onNext(<span class="string">"🔴"</span>)</div><div class="line"></div><div class="line">sourceSequence.onNext(<span class="string">"🐸"</span>)</div><div class="line">sourceSequence.onNext(<span class="string">"🐷"</span>)</div><div class="line">sourceSequence.onNext(<span class="string">"🐵"</span>)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">🐸</div><div class="line">🐷</div><div class="line">🐵</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/" itemprop="url">
+                  RxSwift(五) Transforming Operators（转换操作）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T22:14:42+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/" class="leancloud_visitors" data-flag-title="RxSwift(五) Transforming Operators（转换操作）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<blockquote>
+<p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
+</blockquote>
+<h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><p>通过一个闭包改变<code>Observable</code> 序列元素，返回一个新的<code>Observable</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</div><div class="line">    .<span class="built_in">map</span> &#123; $<span class="number">0</span> * $<span class="number">0</span> &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/16/RxSwift-五-Transforming-Operators（转换操作）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/16/RxSwift-四-Combination-Operators/" itemprop="url">
+                  RxSwift(四) Combination Operators
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T22:14:08+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/RxSwift-四-Combination-Operators/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/RxSwift-四-Combination-Operators/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/16/RxSwift-四-Combination-Operators/" class="leancloud_visitors" data-flag-title="RxSwift(四) Combination Operators">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+<blockquote>
+<p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
+</blockquote>
+<p>将多个<code>Observable</code> 组装成一个 <code>Observable</code></p>
+<h4 id="startWith"><a href="#startWith" class="headerlink" title="startWith"></a>startWith</h4><p>会在队列开始之前插入一个事件元素</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.of(<span class="string">"🐶"</span>,<span class="string">"🐱"</span>)</div><div class="line">    .startWith(<span class="string">"1"</span>)</div><div class="line">    .startWith(<span class="string">"2"</span>)</div><div class="line">    .startWith(<span class="string">"3"</span>,<span class="string">"A"</span>,<span class="string">"B"</span>)</div><div class="line">    .subscribeNext&#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/16/RxSwift-四-Combination-Operators/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/16/RxSwift-三-Subjects/" itemprop="url">
+                  RxSwift(三) Subjects
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T22:13:19+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/16/RxSwift-三-Subjects/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/RxSwift-三-Subjects/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/16/RxSwift-三-Subjects/" class="leancloud_visitors" data-flag-title="RxSwift(三) Subjects">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<blockquote>
+<p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Observable像是一个水管，会源源不断的有水冒出来。Subject就像一个水龙头，它可以套在水管上，接受Observable上面的事件。但是作为水龙头，它下面还可以被别的observer给subscribe了</p>
+</blockquote>
+<h4 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h4><p>发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。</p>
+<p>官方demo<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> </span>&#123;</div><div class="line">    &lt;!-- more --&gt;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     通过id添加订阅者</div><div class="line">     - parameter id: id</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addObserver</span><span class="params">(id: String)</span></span> -&gt; <span class="type">Disposable</span> &#123;</div><div class="line">        <span class="keyword">return</span> subscribe &#123; <span class="built_in">print</span>(<span class="string">"Subscription:"</span>, id, <span class="string">"Event:"</span>, $<span class="number">0</span>) &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">subject.subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"Subscription"</span> , <span class="string">"默认"</span> , <span class="string">"Event:"</span>, event )</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🐶"</span>)</div><div class="line">subject.onNext(<span class="string">"🐱"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject.on(.<span class="type">Next</span>(<span class="string">"🅱️"</span>))</div></pre></td></tr></table></figure></p>
+<p>写了个extension 快捷添加subscribe 这里我也写了个不用addObserver的方式。<br>结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Subscription 默认 Event: Next(🐶)</div><div class="line">Subscription: 1 Event: Next(🐶)</div><div class="line">Subscription 默认 Event: Next(🐱)</div><div class="line">Subscription: 1 Event: Next(🐱)</div><div class="line">Subscription 默认 Event: Next(🅰️)</div><div class="line">Subscription: 1 Event: Next(🅰️)</div><div class="line">Subscription: 2 Event: Next(🅰️)</div><div class="line">Subscription 默认 Event: Next(🅱️)</div><div class="line">Subscription: 1 Event: Next(🅱️)</div><div class="line">Subscription: 2 Event: Next(🅱️)</div></pre></td></tr></table></figure></p>
+<p><code>默认</code> 打印了四次 <code>1</code> 打印了四次 <code>2</code> 打印最后两次 ， 因为两个事件是在它订阅后输出的。</p>
+<h4 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h4><p>会给所有订阅者发送事件 ， 还可以指定 <code>bufferSize</code> 数字 表示后面绑定的可以接收前面事件的数量</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> subject = <span class="type">ReplaySubject</span>&lt;<span class="type">String</span>&gt;.create(bufferSize: <span class="number">1</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🐶"</span>)</div><div class="line">subject.onNext(<span class="string">"🐱"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject.onNext(<span class="string">"🅱️"</span>)</div></pre></td></tr></table></figure>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Subscription: 1 Event: Next(🐶)</div><div class="line">Subscription: 1 Event: Next(🐱)</div><div class="line">Subscription: 2 Event: Next(🐱)</div><div class="line">Subscription: 1 Event: Next(🅰️)</div><div class="line">Subscription: 2 Event: Next(🅰️)</div><div class="line">Subscription: 1 Event: Next(🅱️)</div><div class="line">Subscription: 2 Event: Next(🅱️)</div></pre></td></tr></table></figure></p>
+<p><code>2</code> 只接收了🐱 并没有接收🐶 因为我们指定了bufferSize是 1</p>
+<h4 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h4><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），<br>接着才会收到Observable上会发送的序列。</p>
+<p>例子 :<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> subject = <span class="type">BehaviorSubject</span>(value: <span class="string">"🔴"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🐶"</span>)</div><div class="line">subject.onNext(<span class="string">"🐱"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject.onNext(<span class="string">"🅱️"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"3"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🍐"</span>)</div><div class="line">subject.onNext(<span class="string">"🍊"</span>)</div></pre></td></tr></table></figure></p>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Subscription: 1 Event: Next(🔴)</div><div class="line">Subscription: 1 Event: Next(🐶)</div><div class="line">Subscription: 1 Event: Next(🐱)</div><div class="line">Subscription: 2 Event: Next(🐱)</div><div class="line">Subscription: 1 Event: Next(🅰️)</div><div class="line">Subscription: 2 Event: Next(🅰️)</div><div class="line">Subscription: 1 Event: Next(🅱️)</div><div class="line">Subscription: 2 Event: Next(🅱️)</div><div class="line">Subscription: 3 Event: Next(🅱️)</div><div class="line">Subscription: 1 Event: Next(🍐)</div><div class="line">Subscription: 2 Event: Next(🍐)</div><div class="line">Subscription: 3 Event: Next(🍐)</div><div class="line">Subscription: 1 Event: Next(🍊)</div><div class="line">Subscription: 2 Event: Next(🍊)</div><div class="line">Subscription: 3 Event: Next(🍊)</div></pre></td></tr></table></figure>
+<h4 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h4><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>
+<p>示例：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(<span class="string">"🔴"</span>)</div><div class="line"></div><div class="line">variable.asObservable().addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"🐶"</span></div><div class="line">variable.value = <span class="string">"🐱"</span></div><div class="line"></div><div class="line">variable.asObservable().addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"🅰️"</span></div><div class="line">variable.value = <span class="string">"🅱️"</span></div></pre></td></tr></table></figure></p>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Subscription: 1 Event: Next(🔴)</div><div class="line">Subscription: 1 Event: Next(🐶)</div><div class="line">Subscription: 1 Event: Next(🐱)</div><div class="line">Subscription: 2 Event: Next(🐱)</div><div class="line">Subscription: 1 Event: Next(🅰️)</div><div class="line">Subscription: 2 Event: Next(🅰️)</div><div class="line">Subscription: 1 Event: Next(🅱️)</div><div class="line">Subscription: 2 Event: Next(🅱️)</div><div class="line">Subscription: 1 Event: Completed</div><div class="line">Subscription: 2 Event: Completed</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/16/RxSwift-二-创建并订阅Observables/" itemprop="url">
                   RxSwift(二) 创建并订阅Observables
                 </a>
@@ -576,7 +1308,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
