@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Small Du 的技术blog</title>
-  <subtitle>做力所能及的事儿</subtitle>
+  <title>打石头布 的技术blog</title>
+  <subtitle>努力的人运气总不会太差</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -9,7 +9,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>Small Du</name>
+    <name>大石头布</name>
     
   </author>
   
