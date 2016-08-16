@@ -55,7 +55,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -68,11 +68,13 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="RxSwift , iOS , Swift," />
+  <meta name="keywords" content="iOS,RxSwift,Swift," />
 
 
 
 
+
+  <link rel="alternate" href="/atom.xml" title="Small Du 的技术blog" type="application/atom+xml" />
 
 
 
@@ -98,7 +100,7 @@ Obser">
 有许多创建 Observable sequence （信号源序列）的方式 , 本文学习手动创建，实际应用中会时候RxCocoa帮我们创建好的，例如一个UILabel 会有一个rx_text 属性 返回一个 Observable 对象 ，这个实例的时候再看。
 
 Obser">
-<meta property="og:updated_time" content="2016-08-16T09:04:38.990Z">
+<meta property="og:updated_time" content="2016-08-16T13:25:56.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift(二) 创建并订阅Observables">
 <meta name="twitter:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
@@ -117,7 +119,7 @@ Obser">
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: 6319350471765001000,
       author: '博主'
     }
   };
@@ -201,6 +203,16 @@ Obser">
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -210,11 +222,44 @@ Obser">
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
 
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
       
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
   
 </nav>
 
@@ -266,6 +311,25 @@ Obser">
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -310,45 +374,44 @@ Obser">
 </blockquote>
 <p>有许多创建 <code>Observable</code> sequence （信号源序列）的方式 , 本文学习手动创建，实际应用中会时候RxCocoa帮我们创建好的，例如一个<code>UILabel</code> 会有一个<br><code>rx_text</code> 属性 返回一个 <code>Observable</code> 对象 ，这个实例的时候再看。</p>
 <blockquote>
-<p><code>Observable</code>相当于一个被观察的对象，是一个事件序列，订阅者可以订阅他检测事件(Next \ Complete \ Error)</p>
-</blockquote>
-<h4 id="never"><a href="#never" class="headerlink" title="never"></a>never</h4><p>创建一个永远不会终止，也不会发出任何事件的sequence </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">let neverSequence = Observable&lt;String&gt;.never()</div><div class="line">let neverSequenceSubscription = neverSequence.subscribe &#123; _ in</div><div class="line">    print(&quot;永远不会执行&quot;)</div><div class="line">&#125;</div><div class="line">neverSequenceSubscription.addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<h4 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h4><p>创建一个只能执行Complete事件的空<code>Observable</code> sequence 。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable&lt;Int&gt;.empty()</div><div class="line">    .subscribe &#123; (event) in</div><div class="line">        print(event)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<p><code>Observable</code>相当于一个被观察的对象，是一个事件序列，订阅者可以订阅他检测事件(Next \ Complete \ Error)<br><a id="more"></a></p>
+<h4 id="never"><a href="#never" class="headerlink" title="never"></a>never</h4></blockquote>
+<p>创建一个永远不会终止，也不会发出任何事件的sequence </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> neverSequence = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.never()</div><div class="line">&lt;!-- more --&gt;</div><div class="line"><span class="keyword">let</span> neverSequenceSubscription = neverSequence.subscribe &#123; <span class="number">_</span> <span class="keyword">in</span></div><div class="line">    <span class="built_in">print</span>(<span class="string">"永远不会执行"</span>)</div><div class="line">&#125;</div><div class="line">neverSequenceSubscription.addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h4 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h4><p>创建一个只能执行Complete事件的空<code>Observable</code> sequence 。<br><!-- more --><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</div><div class="line">    .subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure></p>
 <p>执行上面代码会打印出Completed</p>
 <h4 id="just"><a href="#just" class="headerlink" title="just"></a>just</h4><p>创建一个只有一个元素的<code>Observable</code> sequence </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable&lt;String&gt;.just(&quot;我是唯一的元素&quot;)</div><div class="line">    .subscribe &#123; (event) in</div><div class="line">        print(event)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.just(<span class="string">"我是唯一的元素"</span>)</div><div class="line">    .subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(event)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>打印结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Next(我是唯一的元素)</div><div class="line">Completed</div></pre></td></tr></table></figure></p>
 <h4 id="of"><a href="#of" class="headerlink" title="of"></a>of</h4><p>创建一个有固定元素个数的<code>Observable</code> seqence</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable&lt;String&gt;.of(&quot;小猫&quot;,&quot;🐶&quot;,&quot;🌲&quot;,&quot;🐍&quot;,&quot;🐱&quot;)</div><div class="line">    .subscribeNext&#123; element in</div><div class="line">        print(element)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.of(<span class="string">"小猫"</span>,<span class="string">"🐶"</span>,<span class="string">"🌲"</span>,<span class="string">"🐍"</span>,<span class="string">"🐱"</span>)</div><div class="line">    .subscribeNext&#123; element <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(element)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>打印结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">小猫</div><div class="line">🐶</div><div class="line">🌲</div><div class="line">🐍</div><div class="line">🐱</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>这个示例介绍了<code>subscribeNext(_:)</code>用法，不像<code>subscribe(_:)</code> 返回一个事件类型的参数（Next, Error, and Completed）。<br><code>subscribeNext(_:)</code> 会忽略 Error 和 Complete 只拿Next事件的元素 。上面的element就是一个String ， 当然也有<code>subscribeError(_:)</code>和<br><code>subscribeCompleted(_:)</code> 方法。还有一个<code>subscribe(onNext:onError:onCompleted:onDisposed:)</code>方法允许你取到更多的事件类型达到你的目的。</p>
 </blockquote>
-<p>例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Observable&lt;String&gt;.of(&quot;小猫&quot;,&quot;🐶&quot;,&quot;🌲&quot;,&quot;🐍&quot;,&quot;🐱&quot;).subscribe(</div><div class="line">                onNext: &#123; print(&quot;Element : \($0)&quot;) &#125;,</div><div class="line">                onError: &#123; print(&quot;Error : \($0)&quot;) &#125;,</div><div class="line">                onCompleted: &#123; print(&quot;Completed&quot;) &#125;,</div><div class="line">                onDisposed: &#123; print(&quot;Disposed&quot;) &#125;</div><div class="line">            )</div></pre></td></tr></table></figure></p>
+<p>例如:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.of(<span class="string">"小猫"</span>,<span class="string">"🐶"</span>,<span class="string">"🌲"</span>,<span class="string">"🐍"</span>,<span class="string">"🐱"</span>).subscribe(</div><div class="line">                onNext: &#123; <span class="built_in">print</span>(<span class="string">"Element : <span class="subst">\($<span class="number">0</span>)</span>"</span>) &#125;,</div><div class="line">                onError: &#123; <span class="built_in">print</span>(<span class="string">"Error : <span class="subst">\($<span class="number">0</span>)</span>"</span>) &#125;,</div><div class="line">                onCompleted: &#123; <span class="built_in">print</span>(<span class="string">"Completed"</span>) &#125;,</div><div class="line">                onDisposed: &#123; <span class="built_in">print</span>(<span class="string">"Disposed"</span>) &#125;</div><div class="line">            )</div></pre></td></tr></table></figure></p>
 <h4 id="toObservable"><a href="#toObservable" class="headerlink" title="toObservable"></a>toObservable</h4><p>使用<code>SequenceType</code>类型创建一个 <code>Observable</code> sequence , 例如数组、字典、Set</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[&quot;🐶&quot;, &quot;🐱&quot;, &quot;🐭&quot;, &quot;🐹&quot;].toObservable()</div><div class="line">            .subscribeNext &#123; print($0) &#125;</div><div class="line">            .addDisposableTo(DisposeBag())</div></pre></td></tr></table></figure>
 <p>执行结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">🐶</div><div class="line">🐱</div><div class="line">🐭</div><div class="line">🐹</div></pre></td></tr></table></figure></p>
 <p>这里是将数组的元素一个一个输出的。</p>
 <h4 id="create"><a href="#create" class="headerlink" title="create"></a>create</h4><p>创建一个自定义的<code>Observable</code>sequence</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">let myJust = &#123; (element:String) -&gt; Observable&lt;String&gt; in</div><div class="line">    return Observable.create(&#123; observer -&gt; Disposable in</div><div class="line">        observer.on(.Next(element))</div><div class="line">        observer.on(.Completed)</div><div class="line">        return NopDisposable.instance</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">myJust(&quot;🍎&quot;).subscribe&#123; print($0) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> myJust = &#123; (element:<span class="type">String</span>) -&gt; <span class="type">Observable</span>&lt;<span class="type">String</span>&gt; <span class="keyword">in</span></div><div class="line">    <span class="keyword">return</span> <span class="type">Observable</span>.create(&#123; observer -&gt; <span class="type">Disposable</span> <span class="keyword">in</span></div><div class="line">        observer.on(.<span class="type">Next</span>(element))</div><div class="line">        observer.on(.<span class="type">Completed</span>)</div><div class="line">        <span class="keyword">return</span> <span class="type">NopDisposable</span>.instance</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">myJust(<span class="string">"🍎"</span>).subscribe&#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>这里穿件了一个myJust的闭包，传入 <code>String</code> 返回 <code>Observable</code> , 在创建方法里 我们调用了 Next 和 Complete方法。<br>然后我们对我们的对象添加了观察者。</p>
-<h4 id="range"><a href="#range" class="headerlink" title="range"></a>range</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable.range(start: 1, count: 5)</div><div class="line">    .subscribe &#123; print($0) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h4 id="range"><a href="#range" class="headerlink" title="range"></a>range</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">5</span>)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>打印结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Next(1)</div><div class="line">Next(2)</div><div class="line">Next(3)</div><div class="line">Next(4)</div><div class="line">Next(5)</div><div class="line">Completed</div></pre></td></tr></table></figure></p>
-<h4 id="repeatElement"><a href="#repeatElement" class="headerlink" title="repeatElement"></a>repeatElement</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable.repeatElement(&quot;🔴&quot;)</div><div class="line">    .take(3)</div><div class="line">    .subscribeNext &#123; print($0) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h4 id="repeatElement"><a href="#repeatElement" class="headerlink" title="repeatElement"></a>repeatElement</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>.repeatElement(<span class="string">"🔴"</span>)</div><div class="line">    .take(<span class="number">3</span>)</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">🔴</div><div class="line">🔴</div><div class="line">🔴</div></pre></td></tr></table></figure></p>
 <p>这块使用take指定次数。</p>
 <h4 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h4><p>利用迭代器创建一个<code>Observable</code> sequence 只有条件是true才执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()    </div><div class="line">Observable.generate(</div><div class="line">    initialState: 0,</div><div class="line">    condition: &#123; $0 &lt; 3 &#125;,</div><div class="line">    iterate: &#123; $0 + 1 &#125;</div><div class="line">    )</div><div class="line">    .subscribeNext &#123; print($0) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()    </div><div class="line"><span class="type">Observable</span>.generate(</div><div class="line">    initialState: <span class="number">0</span>,</div><div class="line">    condition: &#123; $<span class="number">0</span> &lt; <span class="number">3</span> &#125;,</div><div class="line">    iterate: &#123; $<span class="number">0</span> + <span class="number">1</span> &#125;</div><div class="line">    )</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>输出 0,1,2</p>
-<h4 id="deferred"><a href="#deferred" class="headerlink" title="deferred"></a>deferred</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">var count = 1</div><div class="line">let deferredSequence = Observable&lt;String&gt;.deferred &#123;</div><div class="line">    print(&quot;Creating \(count)&quot;)</div><div class="line">    count += 1</div><div class="line">    return Observable.create &#123; observer in</div><div class="line">        print(&quot;正在调用...&quot;)</div><div class="line">        observer.onNext(&quot;🐶&quot;)</div><div class="line">        observer.onNext(&quot;🐱&quot;)</div><div class="line">        observer.onNext(&quot;🐵&quot;)</div><div class="line">        return NopDisposable.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">deferredSequence</div><div class="line">    .subscribeNext &#123; print($0) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">deferredSequence</div><div class="line">    .subscribeNext &#123; print($0) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h4 id="deferred"><a href="#deferred" class="headerlink" title="deferred"></a>deferred</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">1</span></div><div class="line"><span class="keyword">let</span> deferredSequence = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.deferred &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Creating <span class="subst">\(<span class="built_in">count</span>)</span>"</span>)</div><div class="line">    <span class="built_in">count</span> += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="type">Observable</span>.create &#123; observer <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"正在调用..."</span>)</div><div class="line">        observer.onNext(<span class="string">"🐶"</span>)</div><div class="line">        observer.onNext(<span class="string">"🐱"</span>)</div><div class="line">        observer.onNext(<span class="string">"🐵"</span>)</div><div class="line">        <span class="keyword">return</span> <span class="type">NopDisposable</span>.instance</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">deferredSequence</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">deferredSequence</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>执行结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Creating 1</div><div class="line">正在调用...</div><div class="line">🐶</div><div class="line">🐱</div><div class="line">🐵</div><div class="line">Creating 2</div><div class="line">正在调用...</div><div class="line">🐶</div><div class="line">🐱</div><div class="line">🐵</div></pre></td></tr></table></figure>
 <h4 id="error"><a href="#error" class="headerlink" title="error"></a>error</h4><p>创建一个直接返回错误的<code>Observable</code>sequence</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable&lt;Int&gt;.error(Error.Test)</div><div class="line">    .subscribe &#123; print($0) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.error(<span class="type">Error</span>.<span class="type">Test</span>)</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>输出<code>Error(Test)</code><br>这里自定义了一个继承自<code>ErrorType</code>的<code>Error</code>类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public enum Error : ErrorType &#123;</div><div class="line">    case Test</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="doOn"><a href="#doOn" class="headerlink" title="doOn"></a>doOn</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> let disposeBag = DisposeBag()</div><div class="line">Observable.of(&quot;🍎&quot;, &quot;🍐&quot;, &quot;🍊&quot;, &quot;🍋&quot;)</div><div class="line">    .doOn &#123; print(&quot;Intercepted:&quot;, $0) &#125;</div><div class="line">    .subscribeNext &#123; print($0) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<h4 id="doOn"><a href="#doOn" class="headerlink" title="doOn"></a>doOn</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="type">Observable</span>.of(<span class="string">"🍎"</span>, <span class="string">"🍐"</span>, <span class="string">"🍊"</span>, <span class="string">"🍋"</span>)</div><div class="line">    .doOn &#123; <span class="built_in">print</span>(<span class="string">"Intercepted:"</span>, $<span class="number">0</span>) &#125;</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>这里 <code>doOn</code> 和 <code>subscribe</code> 传入参数和返回值一样只是 <code>doOn</code> 会将异常throws出去</p>
 <blockquote>
 <p>系统也提供了<code>doOnNext(_:)</code>, <code>doOnError(_:)</code>, <code>doOnCompleted(_:)</code>这些方便的方法，当然还有<code>doOn(onNext:onError:onCompleted:)</code></p>
@@ -367,6 +430,27 @@ Obser">
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat.jpg" alt="Small Du WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay.jpg" alt="Small Du Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -375,7 +459,11 @@ Obser">
       
         <div class="post-tags">
           
-            <a href="/tags/RxSwift-iOS-Swift/" rel="tag">#RxSwift , iOS , Swift</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/RxSwift/" rel="tag">#RxSwift</a>
+          
+            <a href="/tags/Swift/" rel="tag">#Swift</a>
           
         </div>
       
@@ -404,6 +492,29 @@ Obser">
 
 
     <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
       
     </div>
   </div>
@@ -468,21 +579,55 @@ Obser">
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
           
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">2</span>
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
         </nav>
 
         
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/smalldu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/d61ef5da631a" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-medium"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
           
         </div>
 
@@ -645,6 +790,135 @@ Obser">
 
   
   
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
 
   
 
