@@ -276,13 +276,13 @@
 <blockquote>
 <p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
 </blockquote>
-<p>有许多创建<code>Observable</code> sequence 观察者的方式</p>
+<p>有许多创建 <code>Observable</code> sequence （信号源序列）的方式 , 本文学习手动创建，实际应用中会时候RxCocoa帮我们创建好的，例如一个<code>UILabel</code> 会有一个<br><code>rx_text</code> 属性 返回一个 <code>Observable</code> 对象 ，这个实例的时候再看。</p>
 <blockquote>
 <p><code>Observable</code>相当于一个被观察的对象，是一个事件序列，订阅者可以订阅他检测事件(Next \ Complete \ Error)</p>
 </blockquote>
 <h4 id="never"><a href="#never" class="headerlink" title="never"></a>never</h4><p>创建一个永远不会终止，也不会发出任何事件的sequence </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">let neverSequence = Observable&lt;String&gt;.never()</div><div class="line">let neverSequenceSubscription = neverSequence.subscribe &#123; _ in</div><div class="line">    print(&quot;永远不会执行&quot;)</div><div class="line">&#125;</div><div class="line">neverSequenceSubscription.addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
-<h3 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h3><p>创建一个只能执行Complete事件的空<code>Observable</code> sequence 。</p>
+<h4 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h4><p>创建一个只能执行Complete事件的空<code>Observable</code> sequence 。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let disposeBag = DisposeBag()</div><div class="line">Observable&lt;Int&gt;.empty()</div><div class="line">    .subscribe &#123; (event) in</div><div class="line">        print(event)</div><div class="line">    &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>执行上面代码会打印出Completed</p>
 <h4 id="just"><a href="#just" class="headerlink" title="just"></a>just</h4><p>创建一个只有一个元素的<code>Observable</code> sequence </p>
