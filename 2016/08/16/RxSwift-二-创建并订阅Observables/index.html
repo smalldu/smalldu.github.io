@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT , iOS" />
+  <meta name="keywords" content="RxSwift , iOS , Swift," />
 
 
 
@@ -84,15 +84,34 @@
 
 
 
-<meta name="description" content="iOS 技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Small Du 的技术blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
+
+有许多创建Observable sequence 观察者的方式
+
+Observable相当于一个被观察的对象，是一个事件序列，订阅者可以订阅他检测事件(Next \ Complete \ Error)
+
+never创建一个永远不会终止，也不会发出任何事件的sequenc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift(二) 创建并订阅Observables">
+<meta property="og:url" content="http://yoursite.com/2016/08/16/RxSwift-二-创建并订阅Observables/index.html">
 <meta property="og:site_name" content="Small Du 的技术blog">
-<meta property="og:description" content="iOS 技术博客">
+<meta property="og:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
+
+有许多创建Observable sequence 观察者的方式
+
+Observable相当于一个被观察的对象，是一个事件序列，订阅者可以订阅他检测事件(Next \ Complete \ Error)
+
+never创建一个永远不会终止，也不会发出任何事件的sequenc">
+<meta property="og:updated_time" content="2016-08-16T08:57:52.880Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Small Du 的技术blog">
-<meta name="twitter:description" content="iOS 技术博客">
+<meta name="twitter:title" content="RxSwift(二) 创建并订阅Observables">
+<meta name="twitter:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
+
+有许多创建Observable sequence 观察者的方式
+
+Observable相当于一个被观察的对象，是一个事件序列，订阅者可以订阅他检测事件(Next \ Complete \ Error)
+
+never创建一个永远不会终止，也不会发出任何事件的sequenc">
 
 
 
@@ -113,9 +132,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/16/RxSwift-二-创建并订阅Observables/"/>
 
-  <title> Small Du 的技术blog </title>
+  <title> RxSwift(二) 创建并订阅Observables | Small Du 的技术blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,9 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -205,9 +222,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -227,10 +244,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/08/16/RxSwift-二-创建并订阅Observables/" itemprop="url">
-                  RxSwift(二) 创建并订阅Observables
-                </a>
+                RxSwift(二) 创建并订阅Observables
               
             
           </h1>
@@ -270,9 +284,7 @@
       
 
       
-        
-          
-            <hr>
+        <hr>
 <blockquote>
 <p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
 </blockquote>
@@ -322,154 +334,59 @@
 <p>系统也提供了<code>doOnNext(_:)</code>, <code>doOnError(_:)</code>, <code>doOnCompleted(_:)</code>这些方便的方法，当然还有<code>doOn(onNext:onError:onCompleted:)</code></p>
 </blockquote>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/16/RxSwift(一)-简介/" itemprop="url">
-                  RxSwift 简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-16T16:42:31+08:00" content="2016-08-16">
-              2016-08-16
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/RxSwift-iOS-Swift/" rel="tag">#RxSwift , iOS , Swift</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <hr>
-<blockquote>
-<p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
-</blockquote>
-<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p><strong>每个<code>Observable</code>实例都是一个sequence.</strong></p>
-<p><code>Observable</code> sequence 的关键点在 <code>SequenceType</code> ， 而且它可以异步获取元素 。 这个是<em>RxSwift</em>的根本，其他的都是建立在这个概念之上的。</p>
-<ul>
-<li>一个<code>Observable(ObservableType)</code> 等价于 <code>SequenceType</code></li>
-<li><code>ObservableType.subscribe(_:)</code> 方法等价于 <code>SequenceType.generate()</code>。</li>
-<li><code>ObservableType.subscribe(_:)</code> 需要一个观察者(<code>ObserverType</code>) 参数，这样将自动接收sequence事件，<br>通过监听自动元素而不用手动调用<code>next()</code>。</li>
-</ul>
-<p>如果一个 <code>Observable</code> (这里指的是可观察的对象 信号源) 手动调用Next事件 (<code>Event.Next(Element)</code>) , 它可以链式的调用更多的事件 ，如果<code>Observable</code><br>调用了Error事件(<code>Event.Error(ErrorType)</code>) 或者 Completed事件(<code>Event.Completed</code>) , <code>Observable</code> sequence 将不能继续链式调用。</p>
-<p>Sequence 语法简要解释：</p>
-<p><big><code>Next* (Error | Completed)?</code></big> <br></p>
-<p><big><code>--1--2--3--4--5--6--|----&gt;</code></big>  // “|” = 正常终止 <br></p>
-<p><big><code>--a--b--c--d--e--f--X----&gt;</code></big>  // “X” = 出错终止 <br></p>
-<p><big><code>--tap--tap----------tap--&gt;</code></big>  // “|” = 持续性事件,btn的一系列点击</p>
-<h4 id="Observables-and-observers-观察对象和观察者"><a href="#Observables-and-observers-观察对象和观察者" class="headerlink" title="Observables and observers (观察对象和观察者)"></a>Observables and observers (观察对象和观察者)</h4><p><code>Observables</code>如果没有观察者（订阅者），它的事件闭包将不会执行。如下例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">_ = Observable&lt;String&gt;.create &#123; observerOfString -&gt; Disposable in</div><div class="line">        print(&quot;This will never be printed&quot;)</div><div class="line">        observerOfString.on(.Next(&quot;😬&quot;))</div><div class="line">        observerOfString.on(.Completed)</div><div class="line">        return NopDisposable.instance</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>执行这段代码 ，里面的内容并不会执行。前面加<code>_ =</code>是因为RxSwift 会警告返回值没有使用。</p>
-<p>看下面的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">_ = Observable&lt;String&gt;.create &#123; observerOfString -&gt; Disposable in</div><div class="line">            print(&quot;这个将会执行&quot;)</div><div class="line">            observerOfString.on(.Next(&quot;😬&quot;))</div><div class="line">            observerOfString.on(.Completed)</div><div class="line">            return NopDisposable.instance</div><div class="line">            &#125;.subscribe &#123; (event) in // 观察者</div><div class="line">                print(event)</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
-<p>添加了这个<code>subscribe</code>观察者，这段代码执行会打印<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">这个将会执行</div><div class="line">Next(😬)</div><div class="line">Completed</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><code>subscribe(_:)</code>返回一个<code>Disposable</code>对象代表一个一次性资源例如订阅者。 上面的例子我们忽略了返回值，正常情况下是需要处理的，<br>一般情况下会把它添加到一个<code>DisposeBag</code>对象中，后面的章节会更多的介绍。</p>
-</blockquote>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/RxSwift(一)-简介/" rel="next" title="RxSwift 简介">
+                <i class="fa fa-chevron-left"></i> RxSwift 简介
+              </a>
+            
+          </div>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -477,6 +394,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -496,8 +417,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -540,6 +470,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#never"><span class="nav-number">1.</span> <span class="nav-text">never</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#empty"><span class="nav-number"></span> <span class="nav-text">empty</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#just"><span class="nav-number">1.</span> <span class="nav-text">just</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#of"><span class="nav-number">2.</span> <span class="nav-text">of</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#toObservable"><span class="nav-number">3.</span> <span class="nav-text">toObservable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#create"><span class="nav-number">4.</span> <span class="nav-text">create</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#range"><span class="nav-number">5.</span> <span class="nav-text">range</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#repeatElement"><span class="nav-number">6.</span> <span class="nav-text">repeatElement</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate"><span class="nav-number">7.</span> <span class="nav-text">generate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deferred"><span class="nav-number">8.</span> <span class="nav-text">deferred</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#error"><span class="nav-number">9.</span> <span class="nav-text">error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#doOn"><span class="nav-number">10.</span> <span class="nav-text">doOn</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -636,6 +577,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
