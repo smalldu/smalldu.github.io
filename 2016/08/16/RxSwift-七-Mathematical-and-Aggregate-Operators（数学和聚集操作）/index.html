@@ -88,23 +88,20 @@
 
 <meta name="description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
 
-toArray将一个Observable sequence 转成一个 Array , 只有一个数组元素的Observable 序列
-1234567let disposeBag = DisposeBag()  &amp;lt;!-- more --&amp;gt;        Obse">
+toArray将一个Observable sequence 转成一个 Array , 只有一个数组元素的Observable 序列">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift(七) Mathematical and Aggregate Operators（数学和聚集操作）">
 <meta property="og:url" content="http://yoursite.com/2016/08/16/RxSwift-七-Mathematical-and-Aggregate-Operators（数学和聚集操作）/index.html">
 <meta property="og:site_name" content="大石头布 的技术blog">
 <meta property="og:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
 
-toArray将一个Observable sequence 转成一个 Array , 只有一个数组元素的Observable 序列
-1234567let disposeBag = DisposeBag()  &amp;lt;!-- more --&amp;gt;        Obse">
-<meta property="og:updated_time" content="2016-08-16T14:23:49.120Z">
+toArray将一个Observable sequence 转成一个 Array , 只有一个数组元素的Observable 序列">
+<meta property="og:updated_time" content="2016-08-16T14:27:05.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift(七) Mathematical and Aggregate Operators（数学和聚集操作）">
 <meta name="twitter:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
 
-toArray将一个Observable sequence 转成一个 Array , 只有一个数组元素的Observable 序列
-1234567let disposeBag = DisposeBag()  &amp;lt;!-- more --&amp;gt;        Obse">
+toArray将一个Observable sequence 转成一个 Array , 只有一个数组元素的Observable 序列">
 
 
 
@@ -370,7 +367,8 @@ toArray将一个Observable sequence 转成一个 Array , 只有一个数组元�
 <p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
 </blockquote>
 <h4 id="toArray"><a href="#toArray" class="headerlink" title="toArray"></a>toArray</h4><p>将一个<code>Observable</code> sequence 转成一个 <code>Array</code> , 只有一个数组元素的<code>Observable</code> 序列</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">  &lt;!-- more --&gt;</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">5</span>)</div><div class="line">    .toArray()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line">        </div><div class="line"><span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">5</span>)</div><div class="line">    .toArray()</div><div class="line">    .subscribe &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
 <p>结果 ： <code>Next([1, 2, 3, 4, 5]) Completed</code> </p>
 <h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h4><p>从一个初始值 挨个执行运算 得到最后结果 返回一个单个结果的 <code>Observable</code> 序列</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"></div><div class="line"><span class="type">Observable</span>.of(<span class="number">10</span>, <span class="number">100</span>, <span class="number">1000</span>)</div><div class="line">    .<span class="built_in">reduce</span>(<span class="number">1</span>, accumulator: +)</div><div class="line">    .subscribeNext &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;</div><div class="line">    .addDisposableTo(disposeBag)</div></pre></td></tr></table></figure>
