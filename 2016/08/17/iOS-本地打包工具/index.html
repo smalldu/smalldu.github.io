@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,RxSwift,Swift," />
+  <meta name="keywords" content="iOS,python," />
 
 
 
@@ -86,34 +86,25 @@
 
 
 
-<meta name="description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
-
-
-
-Observable像是一个水管，会源源不断的有水冒出来。Subject就像一个水龙头，它可以套在水管上，接受Observable上面的事件。但是作为水龙头，它下面还可以被别的observer给subscribe了
-
-PublishSubject发送observer">
+<meta name="description" content="1、为什么要自动打包工具？
+没修改一个问题，测试都让你打包一个上传fir ， 你要clean -&amp;gt; 编译打包 -&amp;gt; 上传fir -&amp;gt; 通知测试。而且打包速度好慢，太浪费时间了。如果有一个工具能自动的帮你做完上面所有的事情，岂不是快哉？
+2、网上有那么多自动打包工具，我直接下载就行了为啥还要学习？
+没错网上有很多打包工具，包括github上也有一些直接从github下载并打包上传的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RxSwift(三) Subjects">
-<meta property="og:url" content="http://yoursite.com/2016/08/16/RxSwift-三-Subjects/index.html">
+<meta property="og:title" content="iOS 本地打包工具">
+<meta property="og:url" content="http://yoursite.com/2016/08/17/iOS-本地打包工具/index.html">
 <meta property="og:site_name" content="大石头布 的技术blog">
-<meta property="og:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
-
-
-
-Observable像是一个水管，会源源不断的有水冒出来。Subject就像一个水龙头，它可以套在水管上，接受Observable上面的事件。但是作为水龙头，它下面还可以被别的observer给subscribe了
-
-PublishSubject发送observer">
-<meta property="og:updated_time" content="2016-08-16T14:26:18.530Z">
+<meta property="og:description" content="1、为什么要自动打包工具？
+没修改一个问题，测试都让你打包一个上传fir ， 你要clean -&amp;gt; 编译打包 -&amp;gt; 上传fir -&amp;gt; 通知测试。而且打包速度好慢，太浪费时间了。如果有一个工具能自动的帮你做完上面所有的事情，岂不是快哉？
+2、网上有那么多自动打包工具，我直接下载就行了为啥还要学习？
+没错网上有很多打包工具，包括github上也有一些直接从github下载并打包上传的">
+<meta property="og:updated_time" content="2016-08-17T05:08:02.030Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RxSwift(三) Subjects">
-<meta name="twitter:description" content="本文大多数内容来自RxSwift项目中的Rx.playground , 个人学习记录 。仅供参考，有任何错误，请及时指出。
-
-
-
-Observable像是一个水管，会源源不断的有水冒出来。Subject就像一个水龙头，它可以套在水管上，接受Observable上面的事件。但是作为水龙头，它下面还可以被别的observer给subscribe了
-
-PublishSubject发送observer">
+<meta name="twitter:title" content="iOS 本地打包工具">
+<meta name="twitter:description" content="1、为什么要自动打包工具？
+没修改一个问题，测试都让你打包一个上传fir ， 你要clean -&amp;gt; 编译打包 -&amp;gt; 上传fir -&amp;gt; 通知测试。而且打包速度好慢，太浪费时间了。如果有一个工具能自动的帮你做完上面所有的事情，岂不是快哉？
+2、网上有那么多自动打包工具，我直接下载就行了为啥还要学习？
+没错网上有很多打包工具，包括github上也有一些直接从github下载并打包上传的">
 
 
 
@@ -134,9 +125,9 @@ PublishSubject发送observer">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/16/RxSwift-三-Subjects/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/17/iOS-本地打包工具/"/>
 
-  <title> RxSwift(三) Subjects | 大石头布 的技术blog </title>
+  <title> iOS 本地打包工具 | 大石头布 的技术blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -299,7 +290,7 @@ PublishSubject发送observer">
             
             
               
-                RxSwift(三) Subjects
+                iOS 本地打包工具
               
             
           </h1>
@@ -311,8 +302,8 @@ PublishSubject发送observer">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-16T22:13:19+08:00" content="2016-08-16">
-              2016-08-16
+            <time itemprop="dateCreated" datetime="2016-08-17T13:06:31+08:00" content="2016-08-17">
+              2016-08-17
             </time>
           </span>
 
@@ -325,8 +316,8 @@ PublishSubject发送observer">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -341,8 +332,8 @@ PublishSubject发送observer">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/16/RxSwift-三-Subjects/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/RxSwift-三-Subjects/" itemprop="commentsCount"></span>
+                <a href="/2016/08/17/iOS-本地打包工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/17/iOS-本地打包工具/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -352,7 +343,7 @@ PublishSubject发送observer">
 
           
           
-             <span id="/2016/08/16/RxSwift-三-Subjects/" class="leancloud_visitors" data-flag-title="RxSwift(三) Subjects">
+             <span id="/2016/08/17/iOS-本地打包工具/" class="leancloud_visitors" data-flag-title="iOS 本地打包工具">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,29 +365,48 @@ PublishSubject发送observer">
       
 
       
-        <hr>
-<blockquote>
-<p>本文大多数内容来自RxSwift项目中的<em>Rx.playground</em> , 个人学习记录 。仅供参考，有任何错误，请及时指出。</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>Observable像是一个水管，会源源不断的有水冒出来。Subject就像一个水龙头，它可以套在水管上，接受Observable上面的事件。但是作为水龙头，它下面还可以被别的observer给subscribe了</p>
-</blockquote>
-<h4 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h4><p>发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。<br><a id="more"></a><br>官方demo<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     通过id添加订阅者</div><div class="line">     - parameter id: id</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addObserver</span><span class="params">(id: String)</span></span> -&gt; <span class="type">Disposable</span> &#123;</div><div class="line">        <span class="keyword">return</span> subscribe &#123; <span class="built_in">print</span>(<span class="string">"Subscription:"</span>, id, <span class="string">"Event:"</span>, $<span class="number">0</span>) &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">String</span>&gt;()</div><div class="line">subject.subscribe &#123; (event) <span class="keyword">in</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"Subscription"</span> , <span class="string">"默认"</span> , <span class="string">"Event:"</span>, event )</div><div class="line">    &#125;.addDisposableTo(disposeBag)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🐶"</span>)</div><div class="line">subject.onNext(<span class="string">"🐱"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject.on(.<span class="type">Next</span>(<span class="string">"🅱️"</span>))</div></pre></td></tr></table></figure></p>
-<p>写了个extension 快捷添加subscribe 这里我也写了个不用addObserver的方式。<br>结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Subscription 默认 Event: Next(🐶)</div><div class="line">Subscription: 1 Event: Next(🐶)</div><div class="line">Subscription 默认 Event: Next(🐱)</div><div class="line">Subscription: 1 Event: Next(🐱)</div><div class="line">Subscription 默认 Event: Next(🅰️)</div><div class="line">Subscription: 1 Event: Next(🅰️)</div><div class="line">Subscription: 2 Event: Next(🅰️)</div><div class="line">Subscription 默认 Event: Next(🅱️)</div><div class="line">Subscription: 1 Event: Next(🅱️)</div><div class="line">Subscription: 2 Event: Next(🅱️)</div></pre></td></tr></table></figure></p>
-<p><code>默认</code> 打印了四次 <code>1</code> 打印了四次 <code>2</code> 打印最后两次 ， 因为两个事件是在它订阅后输出的。</p>
-<h4 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h4><p>会给所有订阅者发送事件 ， 还可以指定 <code>bufferSize</code> 数字 表示后面绑定的可以接收前面事件的数量</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> subject = <span class="type">ReplaySubject</span>&lt;<span class="type">String</span>&gt;.create(bufferSize: <span class="number">1</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🐶"</span>)</div><div class="line">subject.onNext(<span class="string">"🐱"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject.onNext(<span class="string">"🅱️"</span>)</div></pre></td></tr></table></figure>
-<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Subscription: 1 Event: Next(🐶)</div><div class="line">Subscription: 1 Event: Next(🐱)</div><div class="line">Subscription: 2 Event: Next(🐱)</div><div class="line">Subscription: 1 Event: Next(🅰️)</div><div class="line">Subscription: 2 Event: Next(🅰️)</div><div class="line">Subscription: 1 Event: Next(🅱️)</div><div class="line">Subscription: 2 Event: Next(🅱️)</div></pre></td></tr></table></figure></p>
-<p><code>2</code> 只接收了🐱 并没有接收🐶 因为我们指定了bufferSize是 1</p>
-<h4 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h4><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），<br>接着才会收到Observable上会发送的序列。</p>
-<p>例子 :<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> subject = <span class="type">BehaviorSubject</span>(value: <span class="string">"🔴"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🐶"</span>)</div><div class="line">subject.onNext(<span class="string">"🐱"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🅰️"</span>)</div><div class="line">subject.onNext(<span class="string">"🅱️"</span>)</div><div class="line"></div><div class="line">subject.addObserver(<span class="string">"3"</span>).addDisposableTo(disposeBag)</div><div class="line">subject.onNext(<span class="string">"🍐"</span>)</div><div class="line">subject.onNext(<span class="string">"🍊"</span>)</div></pre></td></tr></table></figure></p>
-<p>结果:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Subscription: 1 Event: Next(🔴)</div><div class="line">Subscription: 1 Event: Next(🐶)</div><div class="line">Subscription: 1 Event: Next(🐱)</div><div class="line">Subscription: 2 Event: Next(🐱)</div><div class="line">Subscription: 1 Event: Next(🅰️)</div><div class="line">Subscription: 2 Event: Next(🅰️)</div><div class="line">Subscription: 1 Event: Next(🅱️)</div><div class="line">Subscription: 2 Event: Next(🅱️)</div><div class="line">Subscription: 3 Event: Next(🅱️)</div><div class="line">Subscription: 1 Event: Next(🍐)</div><div class="line">Subscription: 2 Event: Next(🍐)</div><div class="line">Subscription: 3 Event: Next(🍐)</div><div class="line">Subscription: 1 Event: Next(🍊)</div><div class="line">Subscription: 2 Event: Next(🍊)</div><div class="line">Subscription: 3 Event: Next(🍊)</div></pre></td></tr></table></figure>
-<h4 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h4><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>
-<p>示例：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</div><div class="line"><span class="keyword">let</span> variable = <span class="type">Variable</span>(<span class="string">"🔴"</span>)</div><div class="line"></div><div class="line">variable.asObservable().addObserver(<span class="string">"1"</span>).addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"🐶"</span></div><div class="line">variable.value = <span class="string">"🐱"</span></div><div class="line"></div><div class="line">variable.asObservable().addObserver(<span class="string">"2"</span>).addDisposableTo(disposeBag)</div><div class="line">variable.value = <span class="string">"🅰️"</span></div><div class="line">variable.value = <span class="string">"🅱️"</span></div></pre></td></tr></table></figure></p>
-<p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Subscription: 1 Event: Next(🔴)</div><div class="line">Subscription: 1 Event: Next(🐶)</div><div class="line">Subscription: 1 Event: Next(🐱)</div><div class="line">Subscription: 2 Event: Next(🐱)</div><div class="line">Subscription: 1 Event: Next(🅰️)</div><div class="line">Subscription: 2 Event: Next(🅰️)</div><div class="line">Subscription: 1 Event: Next(🅱️)</div><div class="line">Subscription: 2 Event: Next(🅱️)</div><div class="line">Subscription: 1 Event: Completed</div><div class="line">Subscription: 2 Event: Completed</div></pre></td></tr></table></figure>
+        <p>1、<strong>为什么要自动打包工具？</strong></p>
+<p>没修改一个问题，测试都让你打包一个上传fir ， 你要clean -&gt; 编译打包 -&gt; 上传fir -&gt; 通知测试。而且打包速度好慢，太浪费时间了。如果有一个工具能自动的帮你做完上面所有的事情，岂不是快哉？</p>
+<p>2、<strong>网上有那么多自动打包工具，我直接下载就行了为啥还要学习？</strong></p>
+<p>没错网上有很多打包工具，包括github上也有一些直接从github下载并打包上传的，但是他们的不一定适合你，首先下载下来要配置各种参数，不会配，还有网上大多是针对普通项目，但是我们项目是cocoaPods管理的，编译的是 <code>xxx.xcworkspace</code> 不是 <code>xxx.xcodeproj</code> 。怎么办 ， <code>xxx.xcodeproj</code> 自动编译后就在你项目目录下会有 <code>xxx.app</code> 但是 <code>xxx.xcworkspace</code> 找不到怎么办？怎么指定目录 ， 这些网上的库大都没有的。<br><a id="more"></a><br>3、<strong>需要哪些准备工作？</strong></p>
+<p>首先你得有装<code>xcode</code> , <code>python3.5</code> （我装的版本,其他版本也行）,  待打包的项目。安装相关软件，随便搜索下就可以了。</p>
+<p>废话结束，开始正文。本文介绍的是自动clean本地项目，编译 打包 上传fir 邮件通知相关人员。不涉及从git上下载。原理就是利用<code>python</code>执行控制台命令。对<br>iOS项目进行打包</p>
+<h3 id="xcode控制台命令"><a href="#xcode控制台命令" class="headerlink" title="xcode控制台命令"></a>xcode控制台命令</h3><p><code>xcode</code> 控制台命令基本都是以 <code>xcodebuild</code> 开头的介绍几个简单的命令，大家可以在命令行试试。</p>
+<ul>
+<li><code>xcodebuild -version</code> 查看xcode的版本号和build的版本号</li>
+<li><code>xcodebuild -showsdks</code> 显示当前系统的SDK、及其版本</li>
+<li><code>xcodebuild -list</code> 先 <code>cd</code> 到工程目录下执行此命令 显示<code>target</code> <code>Schemes</code> 等</li>
+</ul>
+<h4 id="没有使用-cocoaPods-项目的编译"><a href="#没有使用-cocoaPods-项目的编译" class="headerlink" title="没有使用 cocoaPods 项目的编译"></a>没有使用 <code>cocoaPods</code> 项目的编译</h4><p>如果你的项目是普通的项目没有使用cocoaPods 那么 cd 到工程目录下直接执行 <code>xcodebuild build</code> ，就会自动编译了 参数都是默认 默认build release。<br>你也可以指定 <code>xcodebuild -configuration debug build</code> build的时候会在你工程目录下生成一个build文件夹，<code>build/Release-iphoneos/xx.app</code><br>就是一会打包成ipa需要的文件。 第一次build速度会比较慢，要把编译环境拉下来，不要删除build文件夹，以后build 速度就会变快。 </p>
+<h4 id="使用了-cocoaPods-项目的编译"><a href="#使用了-cocoaPods-项目的编译" class="headerlink" title="使用了 cocoaPods 项目的编译"></a>使用了 <code>cocoaPods</code> 项目的编译</h4><p>如果不幸你也和我一样使用了<code>cocoaPods</code> , 其实也没啥不幸的 ，只是编译的时候就比较麻烦了 ，首先还是 cd 到项目目录 。但是你要指定编译文件和 <code>scheme</code><br>而且还要指定build后build文件夹的位置，如果位置找不到，后面怎么自动打包ipa？。</p>
+<p>我这里的命令大概是这样的：<br><code>xcodebuild -workspace xxx.xcworkspace  -scheme 你的scheme -configuration debug -derivedDataPath 指定路径 ONLY_ACTIVE_ARCH=NO</code><br>这样就能正常编译并把build指定到我们想要去的目录</p>
+<h4 id="打包ipa"><a href="#打包ipa" class="headerlink" title="打包ipa"></a>打包ipa</h4><p>打包ipa只要上面路径对了，打包指定从.app 文件的路径 ， 打包到你指定地方就行了。<br>命令：<br><code>xcrun -sdk iphoneos PackageApplication -v 这里填.app的路径 -o 指定存放ipa路径/文件名.ipa</code></p>
+<h3 id="python实现篇"><a href="#python实现篇" class="headerlink" title="python实现篇"></a>python实现篇</h3><p>上面只是说了下编译的原理,下面看下怎么通过python自动处理这些任务 。</p>
+<h4 id="clean、编译、打包"><a href="#clean、编译、打包" class="headerlink" title="clean、编译、打包"></a>clean、编译、打包</h4><p>首先创建一个xxx.py文件，需要你懂点<code>python</code> 语法，不懂就直接copy代码。不要改<code>tab</code> 。python的语法是严格按照<code>tab</code>区分的。后面我会放上我的代码，你们改改<br>变量就可以使用。</p>
+<p>首先你需要引入一些外部依赖。设置编码为utf-8</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> hashlib</div><div class="line"><span class="keyword">from</span> email <span class="keyword">import</span> encoders</div><div class="line"><span class="keyword">from</span> email.header <span class="keyword">import</span> Header</div><div class="line"><span class="keyword">from</span> email.mime.text <span class="keyword">import</span> MIMEText</div><div class="line"><span class="keyword">from</span> email.utils <span class="keyword">import</span> parseaddr, formataddr</div><div class="line"><span class="keyword">import</span> smtplib</div></pre></td></tr></table></figure>
+<p>第一步 ， 声明一些变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 项目根目录</span></div><div class="line">project_path = <span class="string">"/Users/xx/project"</span></div><div class="line"><span class="comment"># 编译成功后.app所在目录</span></div><div class="line">app_path = <span class="string">"/Users/xx/project/build/Build/Products/Release-iphoneos/xxx.app"</span></div><div class="line"><span class="comment"># 指定项目下编译目录</span></div><div class="line">build_path = <span class="string">"build"</span></div><div class="line"><span class="comment"># 打包后ipa存储目录</span></div><div class="line">targerIPA_parth = <span class="string">"/Users/xx/Desktop"</span></div></pre></td></tr></table></figure>
+<p>第二步，clean，和创建一个文件夹，这里的示例是针对有使用cocoaPods的项目 ， 如果没有使用 不用创建文件夹 ，命令自行简化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 清理项目 创建build目录</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_project_mkdir_build</span><span class="params">()</span>:</span></div><div class="line">    os.system(<span class="string">'cd %s;xcodebuild clean'</span> % project_path) <span class="comment"># clean 项目</span></div><div class="line">    os.system(<span class="string">'cd %s;mkdir build'</span> % project_path) <span class="comment"># 创建目录</span></div></pre></td></tr></table></figure>
+<p><code>%s</code> 是py的占位符，字符串类型。后面是真正的填充。</p>
+<p>第三步编译项目</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_project</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">"build release start"</span>)</div><div class="line">    os.system (<span class="string">'cd %s;xcodebuild -list'</span>)</div><div class="line">    os.system (<span class="string">'cd %s;xcodebuild -workspace xxx.xcworkspace  -scheme xxx -configuration release -derivedDataPath %s ONLY_ACTIVE_ARCH=NO || exit'</span> % (project_path,build_path))</div></pre></td></tr></table></figure>
+<p>不知道<code>scheme</code>是啥的<code>xcodebuild -list</code> 自己查</p>
+<p>第四步 打包<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 打包ipa 并且保存在桌面</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_ipa</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">global</span> ipa_filename</div><div class="line">    ipa_filename = time.strftime(<span class="string">'yourproject_%Y-%m-%d-%H-%M-%S.ipa'</span>,time.localtime(time.time()))</div><div class="line">    os.system (<span class="string">'xcrun -sdk iphoneos PackageApplication -v %s -o %s/%s'</span> % (app_path,targerIPA_parth,ipa_filename))</div></pre></td></tr></table></figure></p>
+<p>然后你现在再编写个方法，按顺序调用就可以编译打包了 ，执行完会看到桌面的ipa</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 清理并创建build目录</span></div><div class="line">    clean_project_mkdir_build()</div><div class="line">    <span class="comment"># 编译coocaPods项目文件并 执行编译目录</span></div><div class="line">    build_project()</div><div class="line">    <span class="comment"># 打包ipa 并制定到桌面</span></div><div class="line">    build_ipa()</div></pre></td></tr></table></figure>
+<p>执行就在最下面直接调用就行了 <code>main()</code></p>
+<h4 id="上传fir"><a href="#上传fir" class="headerlink" title="上传fir"></a>上传fir</h4><p>我们是把代码上传到fir测试的，如果你们用的蒲公英或者其他，请自行搜索。<br>通过 <code>gem install fir-cli</code> 如果你没有ruby环境，自行搜索 </p>
+<p>安装完成后，在命令行输入fir 回车 。会有fir的命令提示。我们上传fir需要fir的API_TOKEN , 去fir官网登录找好就能找到。<br>拿到那一串串字符，在变量区加上<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># firm的api token</span></div><div class="line">fir_api_token = <span class="string">"xxxxxxxxxxxxxxxxxxxxxxxxxx"</span></div></pre></td></tr></table></figure></p>
+<p>然后命令传入ipa目录和token就可以上传了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#上传</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">upload_fir</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">if</span> os.path.exists(<span class="string">"%s/%s"</span> % (targerIPA_parth,ipa_filename)):</div><div class="line">        print(<span class="string">'watting...'</span>)</div><div class="line">        <span class="comment"># 直接使用fir 有问题 这里使用了绝对地址 在终端通过 which fir 获得</span></div><div class="line">        ret = os.system(<span class="string">"/usr/local/bin/fir p '%s/%s' -T '%s'"</span> % (targerIPA_parth,ipa_filename,fir_api_token))</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        print(<span class="string">"没有找到ipa文件"</span>)</div></pre></td></tr></table></figure></p>
+<p>这里也有遇到一个=坑，就是在终端直接fir 带后面的就可以执行 ，但是在这里识别不了命令，必须制定全路径，怎么找命令的全路径呢？终端输入 <code>which fir</code></p>
+<h4 id="发邮件"><a href="#发邮件" class="headerlink" title="发邮件"></a>发邮件</h4><p>具体发邮件功能看代码，这里有几个变量。我使用的是新浪邮箱发的，smtp服务器 ， 如果你是 pop3 请更换，还要在邮箱里开启相应的服务</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from_addr = <span class="string">"xxxx@sina.com"</span></div><div class="line">password = <span class="string">"*****"</span></div><div class="line">smtp_server = <span class="string">"smtp.sina.com"</span></div><div class="line">to_addr = <span class="string">'aaa@qq.com,bbbb@qq.com'</span></div></pre></td></tr></table></figure>
+<p>然后发邮件的方法</p>
+<p>我们的fir路径是固定的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 发邮件</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">send_mail</span><span class="params">()</span>:</span></div><div class="line">    msg = MIMEText(<span class="string">'xxx iOS测试项目已经打包完毕，请前往 http://fir.im/xxxxx 下载测试！'</span>, <span class="string">'plain'</span>, <span class="string">'utf-8'</span>)</div><div class="line">    msg[<span class="string">'From'</span>] = _format_addr(<span class="string">'自动打包系统 &lt;%s&gt;'</span> % from_addr)</div><div class="line">    msg[<span class="string">'To'</span>] = _format_addr(<span class="string">'xxx测试人员 &lt;%s&gt;'</span> % to_addr)</div><div class="line">    msg[<span class="string">'Subject'</span>] = Header(<span class="string">'xxx iOS客户端打包程序'</span>, <span class="string">'utf-8'</span>).encode()</div><div class="line">    server = smtplib.SMTP(smtp_server, <span class="number">25</span>)</div><div class="line">    server.set_debuglevel(<span class="number">1</span>)</div><div class="line">    server.login(from_addr, password)</div><div class="line">    server.sendmail(from_addr, [to_addr], msg.as_string())</div><div class="line">    server.quit()</div></pre></td></tr></table></figure></p>
+<p>然后执行顺序是这样的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="comment"># 清理并创建build目录</span></div><div class="line">    clean_project_mkdir_build()</div><div class="line">    <span class="comment"># 编译coocaPods项目文件并 执行编译目录</span></div><div class="line">    build_project()</div><div class="line">    <span class="comment"># 打包ipa 并制定到桌面</span></div><div class="line">    build_ipa()</div><div class="line">    <span class="comment"># 上传fir</span></div><div class="line">    upload_fir()</div><div class="line">    <span class="comment"># 发邮件</span></div><div class="line">    send_mail()</div><div class="line"></div><div class="line"><span class="comment"># 执行</span></div><div class="line">main()</div></pre></td></tr></table></figure></p>
+<p>本文重点在自动打包命令上，python代码感兴趣的可以去<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank" rel="external">Python教程</a> 学习。<br>本文代码已经托管在github上：<a href="https://github.com/smalldu/autoipa" target="_blank" rel="external">https://github.com/smalldu/autoipa</a></p>
 
       
     </div>
@@ -442,9 +452,7 @@ PublishSubject发送observer">
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/RxSwift/" rel="tag">#RxSwift</a>
-          
-            <a href="/tags/Swift/" rel="tag">#Swift</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -453,17 +461,13 @@ PublishSubject发送observer">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/16/RxSwift-二-创建并订阅Observables/" rel="next" title="RxSwift(二) 创建并订阅Observables">
-                <i class="fa fa-chevron-left"></i> RxSwift(二) 创建并订阅Observables
+              <a href="/2016/08/16/RxSwift-七-Mathematical-and-Aggregate-Operators（数学和聚集操作）/" rel="next" title="RxSwift(七) Mathematical and Aggregate Operators（数学和聚集操作）">
+                <i class="fa fa-chevron-left"></i> RxSwift(七) Mathematical and Aggregate Operators（数学和聚集操作）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/16/RxSwift-四-Combination-Operators/" rel="prev" title="RxSwift(四) Combination Operators">
-                RxSwift(四) Combination Operators <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -512,8 +516,8 @@ PublishSubject发送observer">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/16/RxSwift-三-Subjects/"
-           data-title="RxSwift(三) Subjects" data-url="http://yoursite.com/2016/08/16/RxSwift-三-Subjects/">
+      <div class="ds-thread" data-thread-key="2016/08/17/iOS-本地打包工具/"
+           data-title="iOS 本地打包工具" data-url="http://yoursite.com/2016/08/17/iOS-本地打包工具/">
       </div>
     
   </div>
@@ -631,7 +635,7 @@ PublishSubject发送observer">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#PublishSubject"><span class="nav-number">1.</span> <span class="nav-text">PublishSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ReplaySubject"><span class="nav-number">2.</span> <span class="nav-text">ReplaySubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BehaviorSubject"><span class="nav-number">3.</span> <span class="nav-text">BehaviorSubject</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Variable"><span class="nav-number">4.</span> <span class="nav-text">Variable</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#xcode控制台命令"><span class="nav-number">1.</span> <span class="nav-text">xcode控制台命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#没有使用-cocoaPods-项目的编译"><span class="nav-number">1.1.</span> <span class="nav-text">没有使用 cocoaPods 项目的编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用了-cocoaPods-项目的编译"><span class="nav-number">1.2.</span> <span class="nav-text">使用了 cocoaPods 项目的编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包ipa"><span class="nav-number">1.3.</span> <span class="nav-text">打包ipa</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python实现篇"><span class="nav-number">2.</span> <span class="nav-text">python实现篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#clean、编译、打包"><span class="nav-number">2.1.</span> <span class="nav-text">clean、编译、打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上传fir"><span class="nav-number">2.2.</span> <span class="nav-text">上传fir</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发邮件"><span class="nav-number">2.3.</span> <span class="nav-text">发邮件</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
