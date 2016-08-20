@@ -86,18 +86,15 @@
 
 
 
-<meta name="description" content="iOS 播放视频可以用MPMoviePlayerController，MPMoviePlayerController是系统高度封装的VC，使用起来相对简单，但是灵活性缺失，一般播放视频会选择使用AVPlayer ， 它可以高度自定义。虽说 AVPlayer 也有一些库，如果项目比较紧可以用第三方，但是如果有时间还是要自己学习的。本篇以AVPlayer播放网络视频为例，介绍 AVPlayer的基">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift AVPlayer 播放网络视频之基础篇 ">
 <meta property="og:url" content="http://yoursite.com/2016/08/20/Swift-AVPlayer-播放网络视频之基础篇/index.html">
 <meta property="og:site_name" content="大石头布 的技术blog">
-<meta property="og:description" content="iOS 播放视频可以用MPMoviePlayerController，MPMoviePlayerController是系统高度封装的VC，使用起来相对简单，但是灵活性缺失，一般播放视频会选择使用AVPlayer ， 它可以高度自定义。虽说 AVPlayer 也有一些库，如果项目比较紧可以用第三方，但是如果有时间还是要自己学习的。本篇以AVPlayer播放网络视频为例，介绍 AVPlayer的基">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/954071-f0f25ee81a868945.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/954071-bfeede1f922ca47b.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2016-08-20T06:05:37.090Z">
+<meta property="og:updated_time" content="2016-08-20T06:09:56.540Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift AVPlayer 播放网络视频之基础篇 ">
-<meta name="twitter:description" content="iOS 播放视频可以用MPMoviePlayerController，MPMoviePlayerController是系统高度封装的VC，使用起来相对简单，但是灵活性缺失，一般播放视频会选择使用AVPlayer ， 它可以高度自定义。虽说 AVPlayer 也有一些库，如果项目比较紧可以用第三方，但是如果有时间还是要自己学习的。本篇以AVPlayer播放网络视频为例，介绍 AVPlayer的基">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/954071-f0f25ee81a868945.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -359,8 +356,7 @@
       
 
       
-        <p><img src="http://upload-images.jianshu.io/upload_images/954071-f0f25ee81a868945.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="本篇效果图"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/954071-bfeede1f922ca47b.gif?imageMogr2/auto-orient/strip" alt="效果"></p>
+        <p><img src="http://upload-images.jianshu.io/upload_images/954071-f0f25ee81a868945.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="本篇效果图"><br><a id="more"></a><br><img src="http://upload-images.jianshu.io/upload_images/954071-bfeede1f922ca47b.gif?imageMogr2/auto-orient/strip" alt="效果"></p>
 <p>iOS 播放视频可以用<code>MPMoviePlayerController</code>，<code>MPMoviePlayerController</code>是系统高度封装的VC，使用起来相对简单，但是灵活性缺失，<br>一般播放视频会选择使用<code>AVPlayer</code> ， 它可以高度自定义。虽说 <code>AVPlayer</code> 也有一些库，如果项目比较紧可以用第三方，但是如果有时间还是要自己学习的。本篇以<code>AVPlayer</code>播放网络视频为例，介绍 <code>AVPlayer</code>的基本用法。后面慢慢重构，尽量写出一个功能强大的播放器。</p>
 <h5 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h5><p>找到Info.plist 右键 Open As -&gt; Source Code  , 在 <code>&lt;/dict&gt;</code> 上面加上：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>NSAppTransportSecurity<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>NSAllowsArbitraryLoads<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <p>不加的不能处理http请求。都懂的。</p>
@@ -438,7 +434,7 @@
 <p>然后在<code>update</code>的最前面加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//暂停的时候</div><div class="line">if !self.playerView.playing&#123;</div><div class="line">    return</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>因为在暂停的时候不需要计算。</p>
 <p>至此，我们基础版本的播放器实现完了，效果如图。这个播放器还缺少很多功能，比如：右划快进、左划快退 ，播放速度 1x 2x 0.5x等 左边上滑调整亮度 右边上滑调整音量 、 清晰度切换、 缓存下载等 。 而且还需要进一步封装。有时间会把这些补上 。 </p>
-<p>github链接:<a href="https://github.com/smalldu/ZZPlayer" target="_blank" rel="external">https://github.com/smalldu/ZZPlayer</a></p>
+<p>github链接:<a href="https://github.com/smalldu/ZZPlayer" target="_blank" rel="external">https://github.com/smalldu/ZZPlayer</a><br>如果图片无法浏览可以移至简书:<a href="http://www.jianshu.com/p/d35980045c2b" target="_blank" rel="external">http://www.jianshu.com/p/d35980045c2b</a></p>
 <p>参考链接:<br>    <a href="http://www.jianshu.com/p/de418c21d33c" target="_blank" rel="external">AVPlayer 本地、网络视频播放相关</a><br>    <a href="https://github.com/BrikerMan/BMPlayer" target="_blank" rel="external">BMPlayer</a></p>
 
       
