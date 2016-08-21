@@ -4,6 +4,61 @@
   
     
     <entry>
+      <title><![CDATA[SalesForce 学习目录及语法速查]]></title>
+      <url>http://yoursite.com/2016/08/21/SalesForce-%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95%E5%8F%8A%E8%AF%AD%E6%B3%95%E9%80%9F%E6%9F%A5/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>以下是本人整理的一些SalesForce学习目录，感谢作者的共享</p>
+</blockquote>
+<ul>
+<li><a href="http://www.cnblogs.com/zitjubiz/p/an-architects-guide-to-the-salesforce.html" target="_blank" rel="external">SalesForce 入门,大概了解的文章</a></li>
+<li><a href="http://blog.csdn.net/tiger00598/article/details/5731572" target="_blank" rel="external">基础语法篇</a><a id="more"></a></li>
+<li><a href="http://blog.csdn.net/tiger00598/article/details/5770792" target="_blank" rel="external">salesforce.com Apex语言介绍(二)</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5278303.html" target="_blank" rel="external">salesforce 零基础开发入门学习（二）变量基础知识，集合，表达式，流程控制语句</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5283611.html" target="_blank" rel="external">salesforce 零基础开发入门学习（三）sObject简单介绍以及简单DML操作（SOQL</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5284479.html" target="_blank" rel="external">salesforce 零基础开发入门学习（四）多表关联下的SOQL以及表字段Data type详解</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5287343.html" target="_blank" rel="external">salesforce 零基础开发入门学习（五）异步进程介绍与数据批处理Batchable</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5302940.html" target="_blank" rel="external">salesforce 零基础开发入门学习（六）简单的数据增删改查页面的构建</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5327416.html" target="_blank" rel="external">salesforce 零基础开发入门学习（七）PickList的value值获取</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5343287.html" target="_blank" rel="external">salesforce 零基础开发入门学习（八）数据分页简单制作</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5344278.html" target="_blank" rel="external">salesforce 零基础开发入门学习（九）Approval Process 介绍</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5359762.html" target="_blank" rel="external">salesforce 零基础开发入门学习（十）IDE便捷小知识</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5344809.html" target="_blank" rel="external">salesforce 零基础开发入门学习（十一）sObject及Schema深入</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5369089.html" target="_blank" rel="external">salesforce 零基础开发入门学习（十二）with sharing 、without sharing 、无声明区别</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5372117.html" target="_blank" rel="external">salesforce 零基础开发入门学习（十三）salesforce中JSON的使用</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5381289.html" target="_blank" rel="external">salesforce 零基础开发入门学习（十四）salesforce中工厂模式的运用</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5394542.html" target="_blank" rel="external">salesforce 零基础开发入门学习（十五）salesforce中formula的使用（不含Date/Time）</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5409209.html" target="_blank" rel="external">salesforce 零基础学习（十六）Validation Rules &amp; Date/time</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5413731.html" target="_blank" rel="external">salesforce 零基础学习（十七）Trigger用法</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5416842.html" target="_blank" rel="external">salesforce 零基础学习（十八）WorkFlow介绍及用法</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5406352.html" target="_blank" rel="external">salesforce 零基础学习（十九）Permission sets 讲解及设置</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5433849.html" target="_blank" rel="external">salesforce 零基础学习（二十）简单APP制作</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5445174.html" target="_blank" rel="external">salesforce 零基础学习（二十一）workflow Q&amp;A</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5474874.html" target="_blank" rel="external">salesforce 零基础学习（二十二）Test简单使用</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5507940.html" target="_blank" rel="external">salesforce 零基础学习（二十三）数据记录导出至excel（自定义报表导出）</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5542620.html" target="_blank" rel="external">salesforce 零基础学习（二十四）解析csv格式内容</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5544858.html" target="_blank" rel="external">salesforce 零基础学习（二十五）PickList简单联动操作</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5546735.html" target="_blank" rel="external">salesforce 零基础学习（二十六）自定义图表chart简单介绍（使用apex和VF实现）</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5553617.html" target="_blank" rel="external">salesforce 零基础学习（二十七）VF页面等待（loading）效果制作</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5563278.html" target="_blank" rel="external">salesforce 零基础学习（二十八）使用ajax方式实现联动</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5577281.html" target="_blank" rel="external">salesforce 零基础学习（二十九）Record Types简单介绍</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5590066.html" target="_blank" rel="external">salesforce 零基础学习（三十）工具篇：Debug Log小工具</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5591503.html" target="_blank" rel="external">salesforce 零基础学习（三十一）关于LookUp字段点击Save时的Validation</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5601158.html" target="_blank" rel="external">salesforce 零基础学习（三十二）通过Streams和DOM方式读写XML</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5599632.html" target="_blank" rel="external">salesforce 零基础学习（三十三）通过REST方式访问外部数据以及JAVA通过rest方式访问salesforce</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5619655.html" target="_blank" rel="external">salesforce 零基础学习（三十四）动态的Custom Label</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5624365.html" target="_blank" rel="external">salesforce 零基础学习（三十五) 通过Process Builder和Approval Processes锁定记录(Lock Record)</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5627563.html" target="_blank" rel="external">salesforce 零基础学习（三十六)通过Process Builder以及Apex代码实现锁定记录( Lock Record)</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5660131.html" target="_blank" rel="external">salesforce 零基础学习（三十七） DML及Database方法简单描述</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5684134.html" target="_blank" rel="external">salesforce 零基础学习（三十八）Translate 的使用(国际化处理)</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5680446.html" target="_blank" rel="external">salesforce 零基础学习（三十九） soql函数以及常量</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5706758.html" target="_blank" rel="external">salesforce 零基础学习（四十）Custom Settings简单使用</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5723939.html" target="_blank" rel="external">salesforce 零基础学习（四十一）Group</a></li>
+<li><a href="http://www.cnblogs.com/zero-zyq/p/5752978.html" target="_blank" rel="external">salesforce 零基础学习（四十二）简单文件上传下载</a></li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Swift AVPlayer 播放网络视频之基础篇 ]]></title>
       <url>http://yoursite.com/2016/08/20/Swift-AVPlayer-%E6%92%AD%E6%94%BE%E7%BD%91%E7%BB%9C%E8%A7%86%E9%A2%91%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%AF%87/</url>
       <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/954071-f0f25ee81a868945.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="本篇效果图"><br><a id="more"></a><br><img src="http://upload-images.jianshu.io/upload_images/954071-bfeede1f922ca47b.gif?imageMogr2/auto-orient/strip" alt="效果"></p>
